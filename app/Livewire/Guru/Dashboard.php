@@ -8,7 +8,7 @@ class Dashboard extends Component
 {
    public function render()
 {
-    return view('livewire.siswa.dashboard');
+    return view('livewire.guru.dashboard');
     // atau 'livewire.guru.dashboard' untuk guru
 }
 }

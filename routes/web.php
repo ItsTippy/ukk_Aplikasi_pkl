@@ -19,12 +19,12 @@ Route::view('dashboard', 'dashboard')
     Route::get('/pkl', Pkl::class)->name('pkl');
 
     Route::middleware(['auth'])->group(function () {
-        Route::middleware('role:siswa')->group(function () {
+        Route::middleware('role:super_admin|siswa')->group(function () {
 
             Route::get('/siswa/dashboard', SiswaDashboard::class)->name('siswa.dashboard');
         });
     
-        Route::middleware('role:guru')->group(function () {
+        Route::middleware('role:super_admin|guru')->group(function () {
             Route::get('/guru/dashboard', GuruDashboard::class)->name('guru.dashboard');
         });
     });
