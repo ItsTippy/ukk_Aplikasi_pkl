@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire\Auth;
-
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -46,11 +46,13 @@ class Login extends Component
     // ✅ Cek role dan redirect sesuai peran
     $role = auth()->user()->role;
 
-    if ($role === 'siswa') {
-        $this->redirect(route('siswa.dashboard'), navigate: true);
-    } elseif ($role === 'guru') {
-        $this->redirect(route('guru.dashboard'), navigate: true);
-    } else {
+    $user = Auth::user();
+
+    if ($user->hasRole('siswa')) {
+        $this->redirectRoute('siswa.dashboard');
+    } elseif ($user->hasRole('guru')) {
+        $this->redirectRoute('guru.dashboard');
+    }  else {
         // fallback kalau role tidak dikenali
         $this->redirect(route('dashboard'), navigate: true);
     }

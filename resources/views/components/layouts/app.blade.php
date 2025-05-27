@@ -1,21 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ $title ?? 'Dashboard' }}</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
-</head>
-<body class="flex">
-    <aside class="w-64 bg-gray-800 text-white h-screen">
-        @if (auth()->user()->role === 'siswa')
-            @include('components.layouts.app.siswa-sidebar')
-        @elseif (auth()->user()->role === 'guru')
-            @include('components.layouts.app.guru-sidebar')
-        @endif
-    </aside>
-    <main class="flex-1 p-4">
-        {{ $slot }}
-    </main>
-    @livewireScripts
-</body>
-</html>
+@php
+    $user = auth()->user();
+@endphp
+
+@if ($user && $user->hasRole('guru'))
+    <x-layouts.app.guru-sidebar :title="$title ?? null">
+        <flux:main>
+            {{ $slot }}
+        </flux:main>
+    </x-layouts.app.guru-sidebar>
+@elseif ($user && $user->hasRole('siswa'))
+    <x-layouts.app.siswa-sidebar :title="$title ?? null">
+        <flux:main>
+            {{ $slot }}
+        </flux:main>
+    </x-layouts.app.siswa-sidebar>
+@else
+    {{-- Fallback sidebar atau guest --}}
+    <x-layouts.app.sidebar :title="$title ?? null">
+        <flux:main>
+            {{ $slot }}
+        </flux:main>
+    </x-layouts.app.sidebar>
+@endif
