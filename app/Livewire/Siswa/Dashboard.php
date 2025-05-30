@@ -22,6 +22,16 @@ class Dashboard extends Component
         $this->loadData();
     }
 
+    public function getDurasiAttribute()
+    {
+        if ($this->mulai && $this->selesai) {
+            $mulai = Carbon::parse($this->mulai);
+            $selesai = Carbon::parse($this->selesai);
+            return $mulai->diffInDays($selesai);
+        }
+        return 0;
+    }
+
     public function render()
     {
         return view('livewire.siswa.dashboard', [
@@ -59,6 +69,25 @@ class Dashboard extends Component
 
     public function save()
     {
+
+        $siswa = Siswa::find($this->siswa_id);
+
+    // Jika tidak ditemukan, hentikan proses
+    if (!$siswa) {
+        session()->flash('error', 'Siswa tidak ditemukan.');
+        return;
+    }
+
+    // Cek apakah nama siswa sudah pernah diinput di laporan PKL
+    $sudahAda = Pkl::whereHas('siswa', function ($query) use ($siswa) {
+        $query->where('nama', $siswa->nama);
+    })->exists();
+
+    if ($sudahAda) {
+        session()->flash('error', 'Laporan PKL untuk siswa ini sudah pernah diisi.');
+        return;
+    }
+
         $this->validate([
             'siswa_id' => 'required',
             'industri_id' => 'required',
@@ -77,5 +106,6 @@ class Dashboard extends Component
 
         $this->modalVisible = false;
         $this->loadData();
+        session()->flash('success', 'Laporan PKL berhasil disimpan.');
     }
 }

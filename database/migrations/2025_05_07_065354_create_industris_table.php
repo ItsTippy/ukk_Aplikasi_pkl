@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('kontak');
             $table->string('email');
-            $table->string('guru_pembimbing');
             $table->timestamps();
         });
     }

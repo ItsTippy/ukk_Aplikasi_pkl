@@ -1,12 +1,28 @@
+@if (session()->has('error'))
+    <div class="bg-red-500 text-white p-3 rounded mb-4">
+        {{ session('error') }}
+    </div>
+@endif
+
+@if (session()->has('success'))
+    <div class="bg-green-500 text-white p-3 rounded mb-4">
+        {{ session('success') }}
+    </div>
+@endif
+
 <div>
     <h1 class="text-2xl font-bold mb-4 text-white">Dashboard Siswa</h1>
-    <p class="text-white">Selamat datang, {{ auth()->user()->name }}</p>
+    <p class="text-white">
+    Anda Login Sebagai, {{ auth()->user()->name }}(
+    {{ auth()->user()->getRoleNames()->first() }})
+    </p>
+
 
     <div class="p-6">
-        <h2 class="text-xl font-bold mb-4 text-white">Laporan Siswa PKL</h2>
+        <h2 class="text-xl font-bold mb-4 text-white text-center">Laporan Siswa PKL</h2>
 
         <button wire:click="showModal"
-                class="bg-blue-500 text-white px-4 py-2 rounded mb-4">
+                class="bg-gray-500 text-white px-4 py-2 rounded mb-4">
             Create Laporan PKL
         </button>
   {{-- Modal & Overlay --}}
@@ -34,7 +50,7 @@
                         <td class="border px-2 py-1">{{ $pkl->industri->bidang_usaha }}</td>
                         <td class="border px-2 py-1">{{ $pkl->mulai }}</td>
                         <td class="border px-2 py-1">{{ $pkl->selesai }}</td>
-                        <td class="border px-2 py-1">{{ $pkl->durasi }} hari</td>
+                        <td class="border px-2 py-1">{{ $pkl->durasi }}</td>
                     </tr>
                 @endforeach
             </tbody>

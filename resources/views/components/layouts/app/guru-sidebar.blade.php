@@ -14,10 +14,9 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('guru.dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="academic-cap" :href="route('guru.siswa')" :current="request()->routeIs('guru.siswa')" wire:navigate>{{ __('Data Siswa') }}</flux:navlist.item>
+                    <flux:navlist.item icon="building-office-2" :href="route('guru.industri')" :current="request()->routeIs('guru.industri')" wire:navigate>{{ __('Mitra Indusri') }}</flux:navlist.item>
                 </flux:navlist.group>
-                <!-- <flux:navlist.group  class="grid">
-                    <flux:navlist.item icon="home" :href="route('pkl')" :current="request()->routeIs('pkl')" wire:navigate>{{ __('pkl') }}</flux:navlist.item>
-                </flux:navlist.group> -->
             </flux:navlist>
 
             <flux:spacer />

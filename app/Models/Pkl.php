@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class Pkl extends Model
 {
     use HasFactory;
@@ -16,6 +16,18 @@ class Pkl extends Model
         'mulai',
         'selesai',
     ];
+
+    public function getDurasiAttribute()
+    {
+        if ($this->mulai && $this->selesai) {
+            $mulai = Carbon::parse($this->mulai);
+            $selesai = Carbon::parse($this->selesai);
+
+            return $mulai->diffInDays($selesai) . ' hari';
+        }
+
+        return null;
+    }
 
     public function siswa()
     {

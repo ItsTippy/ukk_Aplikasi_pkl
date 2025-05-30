@@ -11,6 +11,7 @@ class siswa extends Model
     use HasFactory;
 
     protected $fillable = [
+        'foto',
         'nama',
         'nis',
         'gender',
@@ -22,7 +23,8 @@ class siswa extends Model
 
     public function pkl()
     {
-        return $this->hasOne(Pkl::class);
+        return $this->hasOne(Pkl
+        ::class);
     }
  
  

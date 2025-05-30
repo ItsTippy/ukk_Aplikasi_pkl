@@ -14,7 +14,8 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('siswa.dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                </flux:navlist.group>
+                    <flux:navlist.item icon="building-office-2" :href="route('siswa.industri')" :current="request()->routeIs('siswa.industri')" wire:navigate>{{ __('Mitra Industri') }}</flux:navlist.item>
+                </flux:navlist.group>          
             </flux:navlist>
 
             <flux:spacer />
@@ -27,6 +28,7 @@
                 <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
                 {{ __('Documentation') }}
                 </flux:navlist.item>
+                
             </flux:navlist>
 
             <!-- Desktop User Menu -->

@@ -19,7 +19,11 @@ class PklResource extends Resource
 {
     protected static ?string $model = Pkl::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard';
+    protected static ?string $navigationLabel = 'Data Siswa PKL';
+   
+
+
 
     public static function form(Form $form): Form
     {
@@ -84,6 +88,17 @@ class PklResource extends Resource
             Tables\Columns\TextColumn::make('selesai')
                 ->date()
                 ->sortable(),
+
+                Tables\Columns\TextColumn::make('durasi')
+                ->label('Durasi')
+                ->getStateUsing(function (Pkl $record) {
+                    if ($record->mulai && $record->selesai) {
+                        return \Carbon\Carbon::parse($record->mulai)
+                            ->diffInDays(\Carbon\Carbon::parse($record->selesai)) . ' hari';
+                    }
+                    return '-';
+                })
+                ->sortable(),    
         
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()

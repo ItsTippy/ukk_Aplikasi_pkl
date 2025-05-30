@@ -9,11 +9,12 @@ use Filament\Resources\Pages\ManageRecords;
 class ManagePkls extends ManageRecords
 {
     protected static string $resource = PklResource::class;
-
+    protected static ?string $title = 'Data Siswa PKL';
     protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),
         ];
     }
+    
 }

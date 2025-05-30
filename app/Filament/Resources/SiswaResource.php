@@ -17,12 +17,22 @@ class SiswaResource extends Resource
 {
     protected static ?string $model = Siswa::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?string $navigationGroup = 'User Management';
+    protected static ?string $navigationLabel = 'Data Siswa';
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\FileUpload::make('foto')
+                ->label('Foto Siswa')
+                ->image()
+                ->directory('foto-siswa')
+                ->visibility('public')
+                ->imagePreviewHeight('150')
+                ->nullable(),
                 Forms\Components\TextInput::make('nama')
                     ->required()
                     ->maxLength(255),
@@ -57,6 +67,11 @@ class SiswaResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('foto')
+                    ->disk('public') //
+                    ->label('Foto')
+                    ->circular()
+                    ->size(50),
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nis')

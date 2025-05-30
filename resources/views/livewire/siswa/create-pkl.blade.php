@@ -1,8 +1,8 @@
-<div class="fixed inset-0 bg-black bg-opacity-50 z-40 flex items-center justify-center">
+<div class="fixed inset-0 backdrop-brightness-50 bg-opacity-50 z-40 flex items-center justify-center">
     <div class="bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6 z-50 text-white">
         <h2 class="text-xl font-semibold mb-4">Laporan PKL</h2>
 
-        <form wire:submit.prevent="store">
+        <form wire:submit.prevent="save">
             <div class="mb-4">
                 <label class="block text-gray-300">Siswa</label>
                 <select wire:model="siswa_id" class="w-full bg-gray-700 border-gray-600 text-white rounded">
@@ -44,7 +44,15 @@
             </div>
 
             <div class="flex justify-end space-x-2">
-                <button type="button" wire:click="$emit('closeModal')" class="px-4 py-2 bg-gray-600 hover:bg-gray-500 rounded text-white">Cancel</button>
+            <button
+    type="button"
+    x-data
+    x-on:click="$dispatch('closeModal')"
+    class="px-4 py-2 bg-gray-600 hover:bg-gray-500 rounded text-white"
+>
+    Cancel
+</button>
+
                 <button type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-500 rounded text-white">Save</button>
             </div>
         </form>

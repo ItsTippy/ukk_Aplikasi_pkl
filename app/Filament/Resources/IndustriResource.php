@@ -17,7 +17,9 @@ class IndustriResource extends Resource
 {
     protected static ?string $model = Industri::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
+    protected static ?string $navigationLabel = 'Mitra Industri';
+
 
     public static function form(Form $form): Form
     {
@@ -39,9 +41,11 @@ class IndustriResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('guru_pembimbing')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\TextInput::make('website')
+                    ->maxLength(255)    
+                // Forms\Components\TextInput::make('guru_pembimbing')
+                //     ->required()
+                //     ->maxLength(255),
             ]);
     }
 
@@ -59,8 +63,10 @@ class IndustriResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('guru_pembimbing')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('website')
+                    ->searchable(),    
+                // Tables\Columns\TextColumn::make('guru_pembimbing')
+                //     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -16,7 +16,7 @@ class industri extends Model
         'alamat',
         'kontak',
         'email',
-        'guru_pembimbing'
+        'website'
     ];
 
     public function pkls()

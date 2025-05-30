@@ -36,8 +36,10 @@ class Register extends Component
 
         event(new Registered(($user = User::create($validated))));
 
+        $user->assignRole('siswa'); 
+
         Auth::login($user);
 
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
+        $this->redirect(route('siswa.dashboard', absolute: false), navigate: true);
     }
 }

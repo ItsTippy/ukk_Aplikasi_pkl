@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ManageRecords;
 class ManageIndustris extends ManageRecords
 {
     protected static string $resource = IndustriResource::class;
+    protected static ?string $title = 'Mitra Industri SIJA';
 
     protected function getHeaderActions(): array
     {

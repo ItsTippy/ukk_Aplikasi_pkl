@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ManageRecords;
 class ManageSiswas extends ManageRecords
 {
     protected static string $resource = SiswaResource::class;
+    protected static ?string $title = 'Data Siswa';
 
     protected function getHeaderActions(): array
     {

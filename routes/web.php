@@ -3,7 +3,10 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Livewire\Siswa\Dashboard as SiswaDashboard;
 use App\Livewire\Guru\Dashboard as GuruDashboard;
+use App\Livewire\Siswa\Industri;
 use App\Livewire\Pkl;
+use App\Livewire\Guru\Industri as GuruIndustri;
+use App\Livewire\Guru\Siswa;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -23,10 +26,13 @@ Route::view('dashboard', 'dashboard')
         Route::middleware('role:super_admin|siswa')->group(function () {
 
             Route::get('/siswa/dashboard', SiswaDashboard::class)->name('siswa.dashboard'); 
+            Route::get('/siswa/industri', Industri::class)->name('siswa.industri'); 
         });
     
         Route::middleware('role:super_admin|guru')->group(function () {
             Route::get('/guru/dashboard', GuruDashboard::class)->name('guru.dashboard');
+            Route::get('/guru/industri', GuruIndustri::class)->name('guru.industri');
+            Route::get('/guru/data-siswa', Siswa::class)->name('guru.siswa');
         });
     });
 

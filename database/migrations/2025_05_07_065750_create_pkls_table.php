@@ -31,6 +31,7 @@ class CreatePklsTable extends Migration
             // tanggal mulai dan selesai PKL
             $table->date('mulai');
             $table->date('selesai');
+            $table->integer('durasi')->nullable(); // durasi dalam hari
             $table->timestamps();
         });
     }
