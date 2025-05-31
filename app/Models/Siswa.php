@@ -21,6 +21,8 @@ class siswa extends Model
         'status_pkl'
     ];
 
+    
+
     public function pkl()
     {
         return $this->hasOne(Pkl

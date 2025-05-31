@@ -9,6 +9,9 @@ class Pkl extends Model
 {
     use HasFactory;
 
+    protected $appends = ['durasi'];
+
+
     protected $fillable = [
         'siswa_id',
         'guru_id',
