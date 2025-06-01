@@ -33,6 +33,12 @@
                 @error('email') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
 
+            <div class="mb-4">
+                <label class="block text-gray-300">Website</label>
+                <input type="text" wire:model="website" class="w-full border p-2 rounded">
+                @error('email') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+            </div>
+
             <div class="flex justify-end space-x-2">
             <button
     type="button"
