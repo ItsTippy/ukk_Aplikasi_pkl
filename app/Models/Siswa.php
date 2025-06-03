@@ -30,5 +30,9 @@ class siswa extends Model
     }
  
  
-
+    public function getGenderFullAttribute()
+    {
+        return $this->gender === 'L' ? 'Laki-laki' : ($this->gender === 'P' ? 'Perempuan' : 'Tidak diketahui');
+    }
+    
 }
