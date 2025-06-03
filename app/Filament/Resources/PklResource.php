@@ -58,7 +58,20 @@ class PklResource extends Resource
                 Forms\Components\DatePicker::make('mulai')
                     ->required(),
                 Forms\Components\DatePicker::make('selesai')
-                    ->required(),
+                    ->required()
+                    ->rules(function (Get $get) {
+                        $mulai = $get('mulai');
+                        if ($mulai) {
+                            $minDate = \Carbon\Carbon::parse($mulai)->addDays(90)->format('Y-m-d');
+                            return [
+                                'after_or_equal:' . $minDate,
+                            ];
+                        }
+                        return [];
+                    })
+                    ->validationMessages([
+                        'after_or_equal' => 'Tanggal selesai minimal 90 hari setelah tanggal mulai.',
+                    ]),
             ]);
     }
 

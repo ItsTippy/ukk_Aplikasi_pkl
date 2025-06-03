@@ -16,9 +16,9 @@
     </x-layouts.app.siswa-sidebar>
 @else
     {{-- Fallback sidebar atau guest --}}
-    <x-layouts.app.sidebar :title="$title ?? null">
+    <x-layouts.app.siswa-sidebar :title="$title ?? null">
         <flux:main>
             {{ $slot }}
         </flux:main>
-    </x-layouts.app.sidebar>
+    </x-layouts.siswa-app.sidebar>
 @endif

@@ -9,12 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-    {
+    public function up(): void
+{
+    if (!Schema::hasColumn('pkls', 'durasi')) {
         Schema::table('pkls', function (Blueprint $table) {
             $table->integer('durasi')->nullable()->after('selesai');
         });
     }
+}
+
     
     public function down()
     {

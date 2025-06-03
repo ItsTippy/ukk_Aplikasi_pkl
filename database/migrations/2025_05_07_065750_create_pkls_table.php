@@ -15,9 +15,10 @@ class CreatePklsTable extends Migration
             $table->id();
             // foreign key ke tabel siswas
             $table->foreignId('siswa_id')
-                  ->constrained('siswas')
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
+                    ->constrained('siswas')
+                    ->onUpdate('cascade')
+                    ->onDelete('restrict'); // ✅ ini akan menolak penghapusan siswa jika masih ada PKL
+
             // foreign key ke tabel industris
             $table->foreignId('industri_id')
                   ->constrained('industris')

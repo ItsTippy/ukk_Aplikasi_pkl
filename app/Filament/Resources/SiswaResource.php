@@ -11,8 +11,9 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+use Filament\Notifications\Notification;
 class SiswaResource extends Resource
 {
     protected static ?string $model = Siswa::class;
@@ -20,6 +21,15 @@ class SiswaResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-user';
     protected static ?string $navigationGroup = 'User Management';
     protected static ?string $navigationLabel = 'Data Siswa';
+
+
+
+    public static function canDelete(Model $record): bool
+    {
+        // Tolak hapus jika masih punya data PKL
+        return !$record->pkl()->exists();
+    }
+    
 
 
     public static function form(Form $form): Form

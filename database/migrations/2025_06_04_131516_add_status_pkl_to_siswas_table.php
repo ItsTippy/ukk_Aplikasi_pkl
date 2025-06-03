@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::table('industris', function (Blueprint $table) {
-            $table->dropColumn('guru_pembimbing');
+        Schema::table('siswas', function (Blueprint $table) {
+            $table->string('status_pkl')->default('Tidak Aktif')->after('email');
         });
     }
 
     public function down(): void
     {
-        Schema::table('industris', function (Blueprint $table) {
-            $table->string('guru_pembimbing')->nullable();
+        Schema::table('siswas', function (Blueprint $table) {
+            $table->dropColumn('status_pkl');
         });
     }
 };

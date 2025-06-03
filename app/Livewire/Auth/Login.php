@@ -54,7 +54,7 @@ class Login extends Component
         $this->redirectRoute('guru.dashboard');
     }  else {
         // fallback kalau role tidak dikenali
-        $this->redirect(route('dashboard'), navigate: true);
+        $this->redirect(route('siswa.dashboard'), navigate: true);
     }
 }
 
